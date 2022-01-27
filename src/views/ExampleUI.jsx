@@ -1,8 +1,9 @@
+import React, { useRef, useState } from "react";
 import { SyncOutlined } from "@ant-design/icons";
 import { utils } from "ethers";
 import { Button, Card, DatePicker, Divider, Input, Progress, Slider, Spin, Switch } from "antd";
-import React, { useState } from "react";
 import { Address, Balance, Events } from "../components";
+import { callRelayer } from "../helpers/callRelayer";
 
 export default function ExampleUI({
   purpose,
@@ -19,6 +20,25 @@ export default function ExampleUI({
   winnerCheck,
 }) {
   const [newPurpose, setNewPurpose] = useState("loading...");
+  const walletInput = useRef(null);
+  const [submitting, setSubmitting] = useState(false);
+
+  const sendTx = async event => {
+    event.preventDefault();
+    const walletAddress = walletInput.current.value;
+    setSubmitting(true);
+
+    try {
+      const response = await callRelayer(walletAddress);
+      const hash = response.hash;
+      // toast('Transaction sent!', { type: 'info', onClick });
+      walletInput.current.value = "";
+    } catch (err) {
+      // toast(err.message || err, { type: 'error' });
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: 64 }}>
@@ -99,6 +119,13 @@ export default function ExampleUI({
             </Button>
           )}
         </div>
+        <Divider />
+        <form onSubmit={sendTx}>
+          <input required={true} placeholder="Register your name here" ref={walletInput}></input>
+          <button type="submit" disabled={submitting}>
+            {submitting ? "Registering..." : "Register"}
+          </button>
+        </form>
       </div>
     </div>
   );
