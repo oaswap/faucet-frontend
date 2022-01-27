@@ -23,14 +23,14 @@ export default function ExampleUI({
   const walletInput = useRef(null);
   const [submitting, setSubmitting] = useState(false);
 
-  const sendTx = async event => {
+  const callFaucetRelay = async event => {
     event.preventDefault();
     const walletAddress = walletInput.current.value;
     setSubmitting(true);
 
     try {
-      const response = await callRelayer(walletAddress);
-      const hash = response.hash;
+      const response = await callRelayer(mainnetProvider, walletAddress);
+      // const hash = response.hash;
       // toast('Transaction sent!', { type: 'info', onClick });
       walletInput.current.value = "";
     } catch (err) {
@@ -46,7 +46,7 @@ export default function ExampleUI({
         style={{
           border: "1px solid #cccccc",
           padding: 16,
-          width: 400,
+          width: 800,
           backgroundImage: "linear-gradient(rgb(118, 69, 217), rgb(69, 42, 122))",
           borderRadius: 32,
           borderColor: "transparent",
@@ -54,6 +54,13 @@ export default function ExampleUI({
           margin: "0 15px",
         }}
       >
+        <form onSubmit={callFaucetRelay}>
+          <input required={true} placeholder="Ex: 0x807c81042A1fgaC78F46799a401d809fd40813CD" ref={walletInput}></input>
+          <Button id="send-rose-button" htmlType="submit" disabled={submitting}>
+            {submitting ? "Requesting..." : "Request"}
+          </Button>
+        </form>
+        <Divider />
         <h2 style={{ fontSize: 30, margin: 0 }}>
           {winnerCheck === undefined ? (
             <Spin />
@@ -119,13 +126,6 @@ export default function ExampleUI({
             </Button>
           )}
         </div>
-        <Divider />
-        <form onSubmit={sendTx}>
-          <input required={true} placeholder="Register your name here" ref={walletInput}></input>
-          <button type="submit" disabled={submitting}>
-            {submitting ? "Registering..." : "Register"}
-          </button>
-        </form>
       </div>
     </div>
   );
