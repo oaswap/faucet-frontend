@@ -70,3 +70,7 @@ code {
 .web3modal-modal-card {
   text-shadow: none;
 }
+
+form input {
+  color: #000000;
+}
