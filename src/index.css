@@ -1,0 +1,72 @@
+* {
+  font-family: Kanit, sans-serif;
+}
+
+body {
+  margin: 0;
+  text-shadow: rgba(0, 0, 0, 0.4) 2px 2px 5px, rgb(0, 0, 0) 0px 0px 2px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#header_wrapper {
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sc-jRQBWg {
+  display: flex;
+  align-items: center;
+}
+
+.cvvimg {
+  display: flex;
+  align-items: center;
+}
+
+.cvvimg .header-logo-icon {
+  width: 32px;
+  display: block;
+}
+
+.cvvimg .header-logo-name {
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 20px;
+  margin-left: 14px;
+  cursor: default;
+}
+
+#nav_menu {
+  background-color: rgb(39, 38, 44);
+  border-bottom: 1px solid rgb(56, 50, 65);
+  font-size: 21px;
+  margin: 0 !important;
+}
+
+.orange-color {
+  color: #f1a500;
+}
+
+#send-rose-button {
+  text-shadow: rgb(0 0 0 / 40%) 2px 2px 5px, rgb(157 157 157) 0px 0px 2px;
+  padding: 2px 24px 4px 24px;
+  background-color: #1fc7d4;
+  font-size: 21px;
+  line-height: 1;
+  height: 44px;
+  border-radius: 16px;
+  border-color: transparent;
+}
+
+.presale-contract a {
+  font-size: 21px;
+  color: #f1a500 !important;
+}
+
+.web3modal-modal-card {
+  text-shadow: none;
+}
